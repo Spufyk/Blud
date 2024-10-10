@@ -2,23 +2,40 @@
 
 public partial class MainPage : ContentPage
 {
-	int count = 0;
+	const int Gravidade = 1;
+	const int TempoEntreFrames=25;
+	bool EstaMorto=false;
+
+	void AplicaGravidade()
+	{
+		mosca.TranslationY+= Gravidade;
+	}
+
+	async Task Desenha()
+	{
+		while (!EstaMorto)
+		{
+			AplicaGravidade();
+			await Task.Delay(TempoEntreFrames);
+		}
+	}
+
+	void OnGameOverClicked(object s,TappedEventArgs e)
+	{
+		FrameGameOver.IsVisible = false;
+		Inicializar();
+		Desenha();
+	}
+
+	void Inicializar()
+	{
+		mosca.TranslationY=0;
+		EstaMorto= false;
+	}
 
 	public MainPage()
 	{
 		InitializeComponent();
-	}
-
-	private void OnCounterClicked(object sender, EventArgs e)
-	{
-		count++;
-
-		if (count == 1)
-			CounterBtn.Text = $"Clicked {count} time";
-		else
-			CounterBtn.Text = $"Clicked {count} times";
-
-		SemanticScreenReader.Announce(CounterBtn.Text);
 	}
 }
 

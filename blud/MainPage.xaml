@@ -5,14 +5,53 @@
              Shell.NavBarIsVisible="False">
 
     <Grid>
-                <Grid.RowDefinitions>
-                        <RowDefinition Height="*"/>
-                        <RowDefinition Height="*"/>
-                        <RowDefinition Height="*"/>
-                </Grid.RowDefinitions>
-                <Grid.ColumnDefinitions>
-                        <ColumnDefinition Width="*"/>
-                        <ColumnDefinition Width="*"/>
-                </Grid.ColumnDefinitions>
+        <!-- Img fundo-->
+
+        <Image Source="fundo.png"
+               VerticalOptions="Fill"
+               HorizontalOptions="Fill"/>
+
+        <!-- Img personagem-->
+
+        <Image Source="fly.png"
+               HeightRequest="50"
+               WidthRequest="50"
+               HorizontalOptions="Start"
+               x:Name="mosca"/>
+
+        <!-- Img postes-->
+
+        <Image Source="sbp_cima.png"
+            VerticalOptions="Start"
+            HorizontalOptions="End"/>
+
+        <!-- Img postes-->
+
+        <Image Source="sbp_baixo.png"
+               VerticalOptions="End"
+               HorizontalOptions="End"/>
+
+        <!-- Img do chão-->
+
+        <Image Source="chao.png"
+               VerticalOptions="End"
+               HeightRequest="250"
+               WidthRequest="1000"/>
+
+        <!-- Frame game over-->
+
+        <!-- Tela game over-->
+
+        <Frame x:Name="FrameGameOver"
+                BackgroundColor="#99000000"
+                HorizontalOptions="Fill"
+                VerticalOptions="Fill"
+                IsVisible="false">
+
+                <Frame.GestureRecognizers>
+                        <TapGestureRecognizer Tapped="OnGameOverClicked">
+                        </TapGestureRecognizer>
+                </Frame.GestureRecognizers>
+        </Frame>
     </Grid>
 </ContentPage>

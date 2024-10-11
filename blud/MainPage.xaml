@@ -5,6 +5,7 @@
              Shell.NavBarIsVisible="False">
 
     <Grid>
+
         <!-- Img fundo-->
 
         <Image Source="fundo.png"
@@ -23,13 +24,15 @@
 
         <Image Source="sbp_cima.png"
             VerticalOptions="Start"
-            HorizontalOptions="End"/>
+            HorizontalOptions="End"
+            x:Name="CanoCima"/>
 
         <!-- Img postes-->
 
         <Image Source="sbp_baixo.png"
                VerticalOptions="End"
-               HorizontalOptions="End"/>
+               HorizontalOptions="End"
+               x:Name="CanoBaixo"/>
 
         <!-- Img do chão-->
 

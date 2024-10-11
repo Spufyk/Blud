@@ -4,7 +4,10 @@ public partial class MainPage : ContentPage
 {
 	const int Gravidade = 1;
 	const int TempoEntreFrames=25;
-	bool EstaMorto=false;
+	bool EstaMorto =false;
+	double LarguraJanela= 0;
+	double AlturaJanela= 0;
+	int Velocidade= 20;
 
 	void AplicaGravidade()
 	{
@@ -17,6 +20,7 @@ public partial class MainPage : ContentPage
 		{
 			AplicaGravidade();
 			await Task.Delay(TempoEntreFrames);
+			GerenciaCanos();
 		}
 	}
 
@@ -31,6 +35,25 @@ public partial class MainPage : ContentPage
 	{
 		mosca.TranslationY=0;
 		EstaMorto= false;
+	}
+
+	protected override void OnSizeAllocated( double w, double h)
+	{
+		base.OnSizeAllocated(w, h);
+		LarguraJanela= w;
+		AlturaJanela= h;
+	}
+
+	void GerenciaCanos()
+	{
+		CanoCima.TranslationX -= Velocidade;
+		CanoBaixo.TranslationX -= Velocidade;
+		if (CanoBaixo.TranslationX <- LarguraJanela)
+		{
+			CanoBaixo.TranslationX = 0;
+			CanoCima.TranslationX = 0;
+		}
+
 	}
 
 	public MainPage()

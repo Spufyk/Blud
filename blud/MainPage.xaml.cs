@@ -3,11 +3,11 @@
 public partial class MainPage : ContentPage
 {
 	const int Gravidade = 1;
-	const int TempoEntreFrames=25;
-	bool EstaMorto =false;
-	double LarguraJanela= 0;
-	double AlturaJanela= 0;
-	int Velocidade= 20;
+	const int TempoEntreFrames = 25;
+	bool EstaMorto = true;
+	double LarguraJanela = 0;
+	double AlturaJanela = 0;
+	int Velocidade = 20;
 
 	void AplicaGravidade()
 	{
@@ -16,7 +16,7 @@ public partial class MainPage : ContentPage
 
 	async Task Desenha()
 	{
-		while (!EstaMorto)
+		while(!EstaMorto)
 		{
 			AplicaGravidade();
 			await Task.Delay(TempoEntreFrames);
@@ -26,14 +26,14 @@ public partial class MainPage : ContentPage
 
 	void OnGameOverClicked(object s,TappedEventArgs e)
 	{
-		FrameGameOver.IsVisible = false;
+		FrameGameOver.IsVisible = true;
 		Inicializar();
 		Desenha();
 	}
 
 	void Inicializar()
 	{
-		mosca.TranslationY=0;
+		mosca.TranslationY = 0;
 		EstaMorto= false;
 	}
 
@@ -53,7 +53,6 @@ public partial class MainPage : ContentPage
 			CanoBaixo.TranslationX = 0;
 			CanoCima.TranslationX = 0;
 		}
-
 	}
 
 	public MainPage()

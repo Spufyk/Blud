@@ -9,8 +9,7 @@
         <!-- Img fundo-->
 
         <Image Source="fundo.png"
-               VerticalOptions="Fill"
-               HorizontalOptions="Fill"/>
+               Aspect="Fill"/>
 
         <!-- Img personagem-->
 
@@ -20,11 +19,13 @@
                HorizontalOptions="Start"
                x:Name="mosca"/>
 
+
         <!-- Img postes-->
 
         <Image Source="sbp_cima.png"
             VerticalOptions="Start"
             HorizontalOptions="End"
+            HeightRequest="400"
             x:Name="CanoCima"/>
 
         <!-- Img postes-->
@@ -32,15 +33,15 @@
         <Image Source="sbp_baixo.png"
                VerticalOptions="End"
                HorizontalOptions="End"
+               HeightRequest="400"
                x:Name="CanoBaixo"/>
 
-        <!-- Img do chão-->
+       <!-- Img do chão-->
 
         <Image Source="chao.png"
                VerticalOptions="End"
-               HeightRequest="250"
-               WidthRequest="1000"/>
-
+               HeightRequest="100"
+               Aspect="Fill"/>
         <!-- Frame game over-->
 
         <!-- Tela game over-->
@@ -49,11 +50,10 @@
                 BackgroundColor="#99000000"
                 HorizontalOptions="Fill"
                 VerticalOptions="Fill"
-                IsVisible="false">
+                IsVisible="true">
 
                 <Frame.GestureRecognizers>
-                        <TapGestureRecognizer Tapped="OnGameOverClicked">
-                        </TapGestureRecognizer>
+                        <TapGestureRecognizer Tapped="OnGameOverClicked"/>
                 </Frame.GestureRecognizers>
         </Frame>
     </Grid>

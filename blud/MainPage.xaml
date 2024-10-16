@@ -5,7 +5,9 @@
              Shell.NavBarIsVisible="False">
 
     <Grid>
-
+       <Grid.GestureRecognizers>
+              <TapGestureRecognizer Tapped ="OnGridClicked"/>
+       </Grid.GestureRecognizers>
         <!-- Img fundo-->
 
         <Image Source="fundo.png"
@@ -41,7 +43,8 @@
         <Image Source="chao.png"
                VerticalOptions="End"
                HeightRequest="100"
-               Aspect="Fill"/>
+               Aspect="Fill"
+               x:Name="Imgchao"/>
         <!-- Frame game over-->
 
         <!-- Tela game over-->

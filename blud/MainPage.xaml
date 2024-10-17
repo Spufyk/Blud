@@ -4,60 +4,68 @@
              x:Class="blud.MainPage"
              Shell.NavBarIsVisible="False">
 
-    <Grid>
-       <Grid.GestureRecognizers>
-              <TapGestureRecognizer Tapped ="OnGridClicked"/>
-       </Grid.GestureRecognizers>
-        <!-- Img fundo-->
+       <Grid>
+              <Grid.GestureRecognizers>
+                     <TapGestureRecognizer Tapped="OnGridClicked"/>
+              </Grid.GestureRecognizers>
+              <!-- Img fundo-->
 
-        <Image Source="fundo.png"
-               Aspect="Fill"/>
+              <Image Source="fundo.png"
+                     Aspect="Fill"/>
 
-        <!-- Img personagem-->
+              <!-- Img personagem-->
 
-        <Image Source="fly.png"
-               HeightRequest="50"
-               WidthRequest="50"
-               HorizontalOptions="Start"
-               x:Name="mosca"/>
+              <Image Source="bixo.png"
+                     HeightRequest="50"
+                     WidthRequest="50"
+                     HorizontalOptions="Start"
+                     x:Name="mosca"/>
 
 
-        <!-- Img postes-->
+              <!-- Img postes-->
 
-        <Image Source="sbp_cima.png"
-            VerticalOptions="Start"
-            HorizontalOptions="End"
-            HeightRequest="400"
-            x:Name="CanoCima"/>
+              <Image Source="sbp1.png"
+                     VerticalOptions="Start"
+                     HorizontalOptions="End"
+                     HeightRequest="400"
+                     x:Name="CanoCima"/>
 
-        <!-- Img postes-->
+              <!-- Img postes-->
 
-        <Image Source="sbp_baixo.png"
-               VerticalOptions="End"
-               HorizontalOptions="End"
-               HeightRequest="400"
-               x:Name="CanoBaixo"/>
+              <Image Source="sbp2.png"
+                     VerticalOptions="End"
+                     HorizontalOptions="End"
+                     HeightRequest="400"
+                     x:Name="CanoBaixo"/>
 
-       <!-- Img do chão-->
+              <!-- Img do chão-->
 
-        <Image Source="chao.png"
-               VerticalOptions="End"
-               HeightRequest="100"
-               Aspect="Fill"
-               x:Name="Imgchao"/>
-        <!-- Frame game over-->
+              <Image Source="chao.png"
+                     VerticalOptions="End"
+                     HeightRequest="100"
+                     Aspect="Fill"
+                     x:Name="Imgchao"/>
+              <!-- Frame game over-->
 
-        <!-- Tela game over-->
+              <!-- Tela score-->
+              <Frame HorizontalOptions="End"
+                     VerticalOptions="Start"
+                     Margin="0,10,10,0"
+                     BackgroundColor="Black">
+                     <Label x:Name="LabelScore"/>
+              </Frame>
 
-        <Frame x:Name="FrameGameOver"
-                BackgroundColor="#99000000"
-                HorizontalOptions="Fill"
-                VerticalOptions="Fill"
-                IsVisible="true">
+              <!-- Tela game over-->
+              <Frame x:Name="FrameGameOver"
+                     BackgroundColor="#99000000"
+                     HorizontalOptions="Fill"
+                     VerticalOptions="Fill"
+                     IsVisible="true">
 
-                <Frame.GestureRecognizers>
-                        <TapGestureRecognizer Tapped="OnGameOverClicked"/>
-                </Frame.GestureRecognizers>
-        </Frame>
-    </Grid>
+                     <Frame.GestureRecognizers>
+                            <TapGestureRecognizer Tapped="OnGameOverClicked"/>
+                     </Frame.GestureRecognizers>
+              </Frame>
+
+       </Grid>
 </ContentPage>

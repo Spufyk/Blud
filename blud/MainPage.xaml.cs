@@ -2,7 +2,7 @@
 
 public partial class MainPage : ContentPage
 {
-	const int Gravidade = 1;
+	const int Gravidade = 3;
 	const int TempoEntreFrames = 25;
 	bool EstaMorto = true;
 	double LarguraJanela = 0;
@@ -12,7 +12,10 @@ public partial class MainPage : ContentPage
 	const int MaxTempoPulando = 3; //frames
 	bool EstaPulando = false;
 	int TempoPulando = 0;
+	const int aberturaMinima = 100;
+	int score = 0;
 	
+
 
 	void AplicaGravidade()
 	{
@@ -28,7 +31,7 @@ public partial class MainPage : ContentPage
 			else
 				AplicaGravidade();
 
-			GerenciaCanos();
+			GerenciarCanos();
 
 			await Task.Delay(TempoEntreFrames);
 
@@ -56,18 +59,28 @@ public partial class MainPage : ContentPage
 		AlturaJanela = h;
 	}
 
-	void GerenciaCanos()
+	void GerenciarCanos()
 	{
+
 		CanoCima.TranslationX -= Velocidade;
 		CanoBaixo.TranslationX -= Velocidade;
-		if (CanoBaixo.TranslationX <= -LarguraJanela)
+		if (CanoBaixo.TranslationX < -Largura)
 		{
-			CanoBaixo.TranslationX = 0;
-			CanoCima.TranslationX = 0;
+			CanoBaixo.TranslationX = 20;
+			CanoCima.TranslationX = 20;
+		
+			var alturaMaxima = -100;
+			var alturaMinima = -CanoBaixo.HeightRequest;
+
+			CanoCima.TranslationY = Random.Shared.Next((int)alturaMinima, (int)alturaMaxima);
+			CanoBaixo.TranslationY = CanoCima.TranslationY + aberturaMinima + CanoBaixo.HeightRequest;
+			score++;
+			LabelScore.Text = "Canos:" + score.ToString("D3");
 		}
 	}
 
 	bool VerificaColisaoTeto()
+		
 	{
 		var minY = -AlturaJanela / 2;
 

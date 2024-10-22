@@ -26,15 +26,19 @@ public partial class MainPage : ContentPage
 	{
 		while (!EstaMorto)
 		{
+			GerenciarCanos();
 			if (EstaPulando)
 				AplicaPulo();
 			else
 				AplicaGravidade();
-
-			GerenciarCanos();
-
+			if (VericaColisao())
+			{
+				EstaMorto = true;
+				FrameGameOver.IsVisible = true;
+				LabelScore.Text = "Você passou \n por  " + score + "\n canos!";
+				break;
+			}
 			await Task.Delay(TempoEntreFrames);
-
 		}
 
 	}
@@ -64,7 +68,7 @@ public partial class MainPage : ContentPage
 
 		CanoCima.TranslationX -= Velocidade;
 		CanoBaixo.TranslationX -= Velocidade;
-		if (CanoBaixo.TranslationX < -Largura)
+		if (CanoBaixo.TranslationX < -LarguraJanela)
 		{
 			CanoBaixo.TranslationX = 20;
 			CanoCima.TranslationX = 20;
@@ -83,11 +87,19 @@ public partial class MainPage : ContentPage
 		
 	{
 		var minY = -AlturaJanela / 2;
-
-		if (mosca.TranslationY <= minY)
-			return true;
-		else
-			return false;
+		
+		var posHPardal = (LarguraJanela/2) - (mosca.WidthRequest/2);
+		var posVPardal = (AlturaJanela/2) - (mosca.HeightRequest/2) + mosca. TranslationY;
+		if (posHPardal >= Math.Abs (CanoCima.TranslationX) - CanoCima.WidthRequest &&
+			posHPardal <= Math.Abs (CanoCima.TranslationX) + CanoCima.WidthRequest &&
+			posVPardal <= CanoCima.HeightRequest + mosca.TranslationY)
+			{
+				return true;
+			}
+			else
+			{
+				return false;
+			}
 	}
 
 	bool VerificaColisaoChao()

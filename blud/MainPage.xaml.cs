@@ -14,7 +14,7 @@ public partial class MainPage : ContentPage
 	int TempoPulando = 0;
 	const int aberturaMinima = 100;
 	int score = 0;
-	
+
 
 
 	void AplicaGravidade()
@@ -48,6 +48,11 @@ public partial class MainPage : ContentPage
 		FrameGameOver.IsVisible = false;
 		Inicializar();
 		Desenha();
+		CanoCima.TranslationX= - LarguraJanela;
+		CanoBaixo.TranslationY= - LarguraJanela;
+		mosca . TranslationX = 0;
+		mosca . TranslationY = 0;
+		score=0;
 	}
 
 	void Inicializar()
@@ -72,7 +77,7 @@ public partial class MainPage : ContentPage
 		{
 			CanoBaixo.TranslationX = 20;
 			CanoCima.TranslationX = 20;
-		
+
 			var alturaMaxima = -100;
 			var alturaMinima = -CanoBaixo.HeightRequest;
 
@@ -81,25 +86,57 @@ public partial class MainPage : ContentPage
 			score++;
 			LabelScore.Text = "Canos:" + score.ToString("D3");
 		}
+		score++;
+		if (score % 2 == 0)
+			Velocidade++;
 	}
 
 	bool VerificaColisaoTeto()
-		
+
 	{
 		var minY = -AlturaJanela / 2;
-		
-		var posHPardal = (LarguraJanela/2) - (mosca.WidthRequest/2);
-		var posVPardal = (AlturaJanela/2) - (mosca.HeightRequest/2) + mosca. TranslationY;
-		if (posHPardal >= Math.Abs (CanoCima.TranslationX) - CanoCima.WidthRequest &&
-			posHPardal <= Math.Abs (CanoCima.TranslationX) + CanoCima.WidthRequest &&
+
+		if (mosca.TranslationY <= minY)
+			return true;
+		else
+			return false;
+	}
+
+	bool VerificaColisaoCanoCima()
+
+	{
+		var minY = -AlturaJanela / 2;
+
+		var posHPardal = (LarguraJanela / 2) - (mosca.WidthRequest / 2);
+		var posVPardal = (AlturaJanela / 2) - (mosca.HeightRequest / 2) + mosca.TranslationY;
+		if (posHPardal >= Math.Abs(CanoCima.TranslationX) - CanoCima.WidthRequest &&
+			posHPardal <= Math.Abs(CanoCima.TranslationX) + CanoCima.WidthRequest &&
 			posVPardal <= CanoCima.HeightRequest + mosca.TranslationY)
-			{
-				return true;
-			}
-			else
-			{
-				return false;
-			}
+		{
+			return true;
+		}
+		else
+		{
+			return false;
+		}
+	}
+
+	bool VerificaColisaoCanoBaixo()
+
+	{
+		var posVPardal = (LarguraJanela / 2) - (mosca.WidthRequest / 2);
+		var posHPardal = (AlturaJanela / 2) - (mosca.HeightRequest / 2) + mosca.TranslationY;
+		var YMaxCano = CanoCima.HeightRequest + CanoCima.TranslationY + aberturaMinima;
+		if (posHPardal >= Math.Abs(CanoBaixo.TranslationX) - CanoBaixo.WidthRequest &&
+			posHPardal <= Math.Abs(CanoBaixo.TranslationX) + CanoBaixo.WidthRequest &&
+			posVPardal >= YMaxCano)
+		{
+			return true;
+		}
+		else
+		{
+			return false;
+		}
 	}
 
 	bool VerificaColisaoChao()
@@ -116,13 +153,15 @@ public partial class MainPage : ContentPage
 	{
 		if (!EstaMorto)
 		{
-			if (VerificaColisaoTeto() || VerificaColisaoChao())
+			if (VerificaColisaoTeto() || VerificaColisaoChao() || VerificaColisaoCanoCima() || VerificaColisaoCanoBaixo()) ;
 			{
 				return true;
 			}
 		}
-
-		return false;
+		else
+		{
+			return false;
+		}
 	}
 
 	void AplicaPulo()

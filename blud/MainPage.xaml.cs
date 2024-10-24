@@ -48,17 +48,19 @@ public partial class MainPage : ContentPage
 		FrameGameOver.IsVisible = false;
 		Inicializar();
 		Desenha();
-		CanoCima.TranslationX= - LarguraJanela;
-		CanoBaixo.TranslationY= - LarguraJanela;
-		mosca . TranslationX = 0;
-		mosca . TranslationY = 0;
-		score=0;
+
 	}
 
 	void Inicializar()
 	{
 		mosca.TranslationY = 0;
 		EstaMorto = false;
+		CanoCima.TranslationX = -LarguraJanela;
+		CanoBaixo.TranslationY = -LarguraJanela;
+		mosca.TranslationX = 0;
+		mosca.TranslationY = 0;
+		score = 0;
+		Velocidade = 10;
 	}
 
 	protected override void OnSizeAllocated(double w, double h)
@@ -151,18 +153,9 @@ public partial class MainPage : ContentPage
 
 	bool VericaColisao()
 	{
-		if (!EstaMorto)
-		{
-			if (VerificaColisaoTeto() || VerificaColisaoChao() || VerificaColisaoCanoCima() || VerificaColisaoCanoBaixo()) ;
-			{
-				return true;
-			}
-		}
-		else
-		{
-			return false;
-		}
+		return (!EstaMorto && (VerificaColisaoChao() || VerificaColisaoTeto() || VerificaColisaoCanoCima() || VerificaColisaoCanoBaixo()));
 	}
+
 
 	void AplicaPulo()
 	{

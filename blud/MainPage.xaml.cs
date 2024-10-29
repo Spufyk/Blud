@@ -87,6 +87,7 @@ public partial class MainPage : ContentPage
 			CanoBaixo.TranslationY = CanoCima.TranslationY + aberturaMinima + CanoBaixo.HeightRequest;
 			score++;
 			LabelScore.Text = "Canos:" + score.ToString("D3");
+			SoundHelper.Play("hood.wav");
 		}
 		score++;
 		if (score % 2 == 0)

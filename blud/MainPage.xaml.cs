@@ -34,6 +34,7 @@ public partial class MainPage : ContentPage
 			if (VericaColisao())
 			{
 				EstaMorto = true;
+				SoundHelper.Play("bong.wav");
 				FrameGameOver.IsVisible = true;
 				LabelScore.Text = "Você passou \n por  " + score + "\n canos!";
 				break;
@@ -61,6 +62,7 @@ public partial class MainPage : ContentPage
 		mosca.TranslationY = 0;
 		score = 0;
 		Velocidade = 10;
+		SoundHelper.Play("chinese.wav");
 	}
 
 	protected override void OnSizeAllocated(double w, double h)

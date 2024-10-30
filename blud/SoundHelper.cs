@@ -4,11 +4,11 @@ public class SoundHelper
 {
   //------------------------------------------------------------------------
 
-  public static void Play(string hood.wav, bool loop = false)
+   public static void Play(string nomeArquivoWav, bool loop = false)
   {
     Task.Run(async () =>
     {
-      var audioFX = await FileSystem.OpenAppPackageFileAsync(hood.wav);
+      var audioFX = await FileSystem.OpenAppPackageFileAsync(nomeArquivoWav);
       var audioPlayer = AudioManager.Current.CreatePlayer(audioFX);
       audioPlayer.Loop = loop;
       audioPlayer.Play();
